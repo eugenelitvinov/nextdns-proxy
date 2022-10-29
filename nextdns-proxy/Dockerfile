@@ -6,7 +6,7 @@ EXPOSE 53/udp
 RUN apk update; apk upgrade &&\
     wget -O /etc/apk/keys/nextdns.pub https://repo.nextdns.io/nextdns.pub &&\ 
     echo https://repo.nextdns.io/apk | tee -a /etc/apk/repositories >/dev/null &&\
-    apk update && apk add nextdns bind-tools &&\
+    apk update && apk add nextdns bind-tools bash &&\
     mkdir -p /var/nextdns
 COPY run.sh /var/nextdns/run.sh
 
