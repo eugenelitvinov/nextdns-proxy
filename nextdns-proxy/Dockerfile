@@ -3,10 +3,10 @@ FROM alpine:latest
 EXPOSE 53
 EXPOSE 53/udp
 
-RUN apk update; apk upgrade &&\
+RUN apk upgrade --no-cache &&\
     wget -O /etc/apk/keys/nextdns.pub https://repo.nextdns.io/nextdns.pub &&\ 
     echo https://repo.nextdns.io/apk | tee -a /etc/apk/repositories >/dev/null &&\
-    apk update && apk add nextdns bind-tools bash dumb-init &&\
+    apk add --no-cache nextdns bind-tools bash dumb-init tzdata &&\
     mkdir -p /var/nextdns
 COPY run.sh /var/nextdns/run.sh
 
