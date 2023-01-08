@@ -3,7 +3,9 @@
 NEXTDNS_MAX_TTL=${NEXTDNS_MAX_TTL:-15}
 NEXTDNS_CACHE_SIZE=${NEXTDNS_CACHE_SIZE:-10MB}
 NEXTDNS_CONFIG_ID=$NEXTDNS_CONFIG
-NEXTDNS_ARGUMENTS="-listen :53 -report-client-info -log-queries -cache-size=${NEXTDNS_CACHE_SIZE} -max-ttl=${NEXTDNS_MAX_TTL}s -use-hosts=false -mdns=disabled -bogus-priv=false"
+NEXTDNS_ARGUMENTS="-listen :53 -cache-size=${NEXTDNS_CACHE_SIZE} -max-ttl=${NEXTDNS_MAX_TTL}s"
+NEXTDNS_EXTRA_ARGUMENTS=${NEXTDNS_EXTRA_ARGUMENTS:"-report-client-info -log-queries -use-hosts=false -mdns=disabled -bogus-priv=false"}
+
 echo "Parsing configuration"
 
 while IFS='=' read -r -d '' n v; do
@@ -36,6 +38,6 @@ if [ -n "$NEXTDNS_DISCOVERY_DNS" ]; then
     echo " => Found discovery DNS: $NEXTDNS_DISCOVERY_DNS"
 fi
 
-echo "Running nextdns with arguments: $NEXTDNS_ARGUMENTS"
+echo "Running nextdns with arguments: $NEXTDNS_ARGUMENTS $NEXTDNS_EXTRA_ARGUMENTS"
 
-/usr/bin/nextdns run $NEXTDNS_ARGUMENTS
+/usr/bin/nextdns run $NEXTDNS_ARGUMENTS $NEXTDNS_EXTRA_ARGUMENTS
