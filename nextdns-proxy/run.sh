@@ -4,7 +4,7 @@ NEXTDNS_MAX_TTL=${NEXTDNS_MAX_TTL:-15}
 NEXTDNS_CACHE_SIZE=${NEXTDNS_CACHE_SIZE:-10MB}
 NEXTDNS_CONFIG_ID=$NEXTDNS_CONFIG
 NEXTDNS_ARGUMENTS="-listen :53 -cache-size=${NEXTDNS_CACHE_SIZE} -max-ttl=${NEXTDNS_MAX_TTL}s"
-NEXTDNS_EXTRA_ARGUMENTS=${NEXTDNS_EXTRA_ARGUMENTS:"-report-client-info -log-queries -use-hosts=false -mdns=disabled -bogus-priv=false"}
+NEXTDNS_EXTRA_ARGUMENTS=${NEXTDNS_EXTRA_ARGUMENTS:-"-report-client-info -log-queries -use-hosts=false -mdns=disabled -bogus-priv=false"}
 
 echo "Parsing configuration"
 
